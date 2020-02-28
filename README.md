@@ -12,9 +12,11 @@ The list included are:
 
 5. [KAFKA V2.12-2.4.0](docs/KAFKA.md)
 
-6. [ETCD V3.4.4](docs/ETCD.md)
+6. [Redis V5.0.7](docs/REDIS.md)
 
-7. [Cassandra V3.11.6](docs/CASSANDRA.md)
+7. [ETCD V3.4.4](docs/ETCD.md)
+
+8. [Cassandra V3.11.6](docs/CASSANDRA.md)
 
 
 For kubernetes cluster, please refer to another repo: [ai-install-k8s](https://github.com/aiden-dai/ai-install-k8s.git)
