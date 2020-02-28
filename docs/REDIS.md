@@ -62,6 +62,7 @@ vi /root/redis/6379/redis.conf
 content as below:
 ```
 requirepass myredis
+masterauth myredis
 port 6379
 cluster-enabled yes
 cluster-config-file nodes.conf
@@ -78,6 +79,7 @@ vi /root/redis/6380/redis.conf
 content as below:
 ```
 requirepass myredis
+masterauth myredis
 port 6380
 cluster-enabled yes
 cluster-config-file nodes.conf
@@ -87,10 +89,7 @@ appendonly yes
 
 ## Start
 
-Running Redis
--------------
-
-To run Redis with the default configuration just type:
+Start redis on each node
 
 ```
 cd /root/redis/6379
@@ -155,12 +154,26 @@ Adding replica 192.168.56.150:6380 to 192.168.56.152:6379
 ```
 [root@aiden-master ~]# redis-cli -p 6379 -a myredis cluster nodes
 Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
-417e1c680db810557d1c3d8fa05f1ff45bed96d5 192.168.56.151:6380@16380 slave 2085870446259a94f2746c206bdad200a8c8f65b 0 1582868386000 5 connected
-30c622d8f9962018e275d3e439b84cc352f48780 192.168.56.150:6380@16380 slave 2e38f851bd12b532287d59663a2e90b00c31c335 0 1582868385035 4 connected
-55d759bd6e8d5308b9e2c35ed6392a730e52d242 192.168.56.151:6379@16379 master - 0 1582868386079 2 connected 5461-10922
-f4dd0e581f16ae90a3f00c6ce90d9241f39a1b94 192.168.56.152:6380@16380 slave 55d759bd6e8d5308b9e2c35ed6392a730e52d242 0 1582868386561 6 connected
-2085870446259a94f2746c206bdad200a8c8f65b 192.168.56.150:6379@16379 myself,master - 0 1582868384000 1 connected 0-5460
-2e38f851bd12b532287d59663a2e90b00c31c335 192.168.56.152:6379@16379 master - 0 1582868386079 3 connected 10923-16383
+2085870446259a94f2746c206bdad200a8c8f65b 192.168.56.150:6379@16379 myself,master - 0 1582870151000 1 connected 0-5460
+2e38f851bd12b532287d59663a2e90b00c31c335 192.168.56.152:6379@16379 master - 0 1582870152817 3 connected 10923-16383
+417e1c680db810557d1c3d8fa05f1ff45bed96d5 192.168.56.151:6380@16380 slave 2085870446259a94f2746c206bdad200a8c8f65b 0 1582870151015 5 connected
+f4dd0e581f16ae90a3f00c6ce90d9241f39a1b94 192.168.56.152:6380@16380 slave 55d759bd6e8d5308b9e2c35ed6392a730e52d242 0 1582870152349 6 connected
+30c622d8f9962018e275d3e439b84cc352f48780 192.168.56.150:6380@16380 slave 2e38f851bd12b532287d59663a2e90b00c31c335 0 1582870152045 4 connected
+55d759bd6e8d5308b9e2c35ed6392a730e52d242 192.168.56.151:6379@16379 master - 0 1582870153141 2 connected 5461-10922
+```
+
+- Check failover
+
+Manually stop 192.168.56.151:6379, then run cluster nodes again, now 152:6380 become master
+```
+[root@aiden-master ~]# redis-cli -p 6379 -a myredis cluster nodes
+Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
+2085870446259a94f2746c206bdad200a8c8f65b 192.168.56.150:6379@16379 myself,master - 0 1582870348000 1 connected 0-5460
+2e38f851bd12b532287d59663a2e90b00c31c335 192.168.56.152:6379@16379 master - 0 1582870349211 3 connected 10923-16383
+417e1c680db810557d1c3d8fa05f1ff45bed96d5 192.168.56.151:6380@16380 slave 2085870446259a94f2746c206bdad200a8c8f65b 0 1582870349101 5 connected
+f4dd0e581f16ae90a3f00c6ce90d9241f39a1b94 192.168.56.152:6380@16380 master - 0 1582870348177 8 connected 5461-10922
+30c622d8f9962018e275d3e439b84cc352f48780 192.168.56.150:6380@16380 slave 2e38f851bd12b532287d59663a2e90b00c31c335 0 1582870348590 4 connected
+55d759bd6e8d5308b9e2c35ed6392a730e52d242 192.168.56.151:6379@16379 master,fail - 1582870326070 1582870325965 2 disconnected
 ```
 
 
