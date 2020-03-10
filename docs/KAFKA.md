@@ -2,17 +2,17 @@
 
 ## References
 
-...
+http://kafka.apache.org/documentation/#quickstart
 
 ## Machines
 
 machine | ip address | os | hostname 
--|-|-|-|-
+-|-|-|-
 master | 192.168.56.150 | centos 7 | aiden-master
 slave1 | 192.168.56.151 | centos 7 | aiden-slave1
 slave2 | 192.168.56.152 | centos 7 | aiden-slave2
 
-## Pre-requisites
+## Prerequisites
 
 - Zookeeper installed
 

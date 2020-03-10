@@ -1,8 +1,8 @@
-# Install Hbase Cluster
+# Install Spark Cluster
 
 ## References
 
-...
+http://spark.apache.org/docs/latest/spark-standalone.html
 
 
 ## Machines
@@ -13,7 +13,7 @@ master | 192.168.56.150 | centos 7 | aiden-master | Master
 slave1 | 192.168.56.151 | centos 7 | aiden-slave1 | Worker
 slave2 | 192.168.56.152 | centos 7 | aiden-slave2 | Worker
 
-## Pre-requisites
+## Prerequisites
 
 - Hadoop Installed
 - Scala Installed

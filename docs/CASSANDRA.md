@@ -13,7 +13,7 @@ node1 | 192.168.56.150 | centos 7 | aiden-master
 node2 | 192.168.56.151 | centos 7 | aiden-slave1
 node3 | 192.168.56.152 | centos 7 | aiden-slave2
 
-## Pre-requisites
+## Prerequisites
 
 - JDK installed
 

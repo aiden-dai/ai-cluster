@@ -2,7 +2,7 @@
 
 ## References
 
-https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html
+https://hbase.apache.org/2.2/book.html#standalone_dist
 
 ## Machines
 
@@ -12,7 +12,7 @@ master | 192.168.56.150 | centos 7 | aiden-master | Master
 slave1 | 192.168.56.151 | centos 7 | aiden-slave1 | Regionserver, Master Backup
 slave2 | 192.168.56.152 | centos 7 | aiden-slave2 | Regionserver
 
-## Pre-requisites
+## Prerequisites
 
 - Hadoop Installed
 - Zookeeper Installed
